@@ -1,8 +1,8 @@
-import urllib,os.path,re,sys,linecache
+import urllib,os.path,re,sys,linecache_copy
 download_dir = './downloads'
-top_file = 'top.html'
-current_file = 'current.html'
-dl_list = 'dl_list.txt'
+top_file = './top.html'
+current_file = './current.html'
+dl_list = './dl_list.txt'
 top_url = 'http://www.cbsrmt.com/'
 list_url = '?s=synopsis&y=all'
 number_dls = 10
@@ -19,12 +19,13 @@ if not(os.path.exists(download_dir)):
 else:
     print 'directory',download_dir,'already exists'
 
-top = open(top_file,'r')
+
 pages = []
 count = 0
 print 'starting search...'
 if not(os.path.isfile(dl_list)):
     dl = open(dl_list,'w')
+    top = open(top_file,'r')
     for line in top:
         if re.match('.+?<td><a href=\'./episode-.+?</td>.*',line):
             page = re.findall('\'.+?\'',line) # only need one value, though...
@@ -47,9 +48,10 @@ if not(os.path.isfile(dl_list)):
             sys.stdout.flush()
     print 'found',count,'subpages'
     dl.close()
+    top.close()
 
 for i in range(number_dls):
-    line = linecache.getline(dl_list,i+1)
+    line = linecache_copy.getline(dl_list,i+1)
     episode_num = re.findall('e[0-9]{4}',line)
     episode_num[0] = re.sub('e','',episode_num[0])
     episode_name = re.findall('e[0-9]{4}.*\.mp3',line)
@@ -65,6 +67,4 @@ for i in range(number_dls):
 #    print episode_name[0]
 #    print top_url+line,'->',download_dir+'/'+episode_num[0]+episode_name[0]
 #    print download_dir+'/'+episode_num[0]+episode_name[0]
-    linecache.clearcache()
-
-top.close()
+    linecache_copy.clearcache()
