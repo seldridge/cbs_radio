@@ -56,7 +56,6 @@ for i in range(number_dls):
     episode_name[0] = re.sub('\%20','.',episode_name[0])
     if not(os.path.exists(download_dir+'/'+episode_num[0]+episode_name[0])):
         print '  downloading',download_dir+'/'+episode_num[0]+episode_name[0]
-        print '    |-->',line
         urllib.urlretrieve(line,download_dir+'/'+episode_num[0]+episode_name[0])
     else:
         print '  Warning! File',download_dir+'/'+episode_num[0]+episode_name[0],'already exists!'
