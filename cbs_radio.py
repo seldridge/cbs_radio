@@ -40,6 +40,7 @@ if not(os.path.isfile(dl_list)):
                     dl_link[0] = re.sub(' ','%20',dl_link[0])
 #                    print top_url+dl_link[0],'->',download_dir+'/'+episode_num[0]+'.mp3'
                     dl.write(top_url+dl_link[0]+'\n')
+                    break
             if (count%(1399/100)==0):
                 print ' ',count/(1399/100),'percent done!'
             sub.close()
