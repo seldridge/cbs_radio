@@ -5,7 +5,7 @@ current_file = './current.html'
 dl_list = './dl_list.txt'
 top_url = 'http://www.cbsrmt.com/'
 list_url = '?s=synopsis&y=all'
-number_dls = 10
+number_dls = 1399
 
 if not(os.path.exists(top_file)):
     print 'file',top_file,'not found...\n','Fetching it from',top_url+list_url
@@ -64,7 +64,7 @@ for i in range(number_dls):
     else:
         print '  Warning! File',download_dir+'/'+episode_num[0]+episode_name[0],'already exists!'
         sys.stdout.flush()
-#    print episode_name[0]
-#    print top_url+line,'->',download_dir+'/'+episode_num[0]+episode_name[0]
-#    print download_dir+'/'+episode_num[0]+episode_name[0]
+    print episode_name[0]
+    print top_url+line,'->',download_dir+'/'+episode_num[0]+episode_name[0]
+    print download_dir+'/'+episode_num[0]+episode_name[0]
     linecache_copy.clearcache()
